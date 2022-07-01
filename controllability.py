@@ -1,4 +1,3 @@
-from enum import Flag
 from control import ctrb
 from numpy.linalg import matrix_rank
 from pandas import DataFrame
