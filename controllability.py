@@ -17,5 +17,6 @@ def CtrbCheck(A, B):
         print('is Uncontrollable')
 
 
-CtrbCheck(A1, B1)
-CtrbCheck(A2, B2)
+if __name__ == '__main__':
+    CtrbCheck(A1, B1)
+    CtrbCheck(A2, B2)
