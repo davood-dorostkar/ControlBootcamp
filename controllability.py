@@ -1,11 +1,15 @@
 from control import ctrb
 from numpy.linalg import matrix_rank
 from pandas import DataFrame
-A1 = [[1, 0], [0, 2]]
-B1 = [[0], [1]]
+A1 = [[1, 0],
+      [0, 2]]
+B1 = [[0],
+      [1]]
 
-A2 = [[1, 1], [0, 2]]
-B2 = [[0], [1]]
+A2 = [[1, 1],
+      [0, 2]]
+B2 = [[0],
+      [1]]
 
 
 def CtrbCheck(A, B):

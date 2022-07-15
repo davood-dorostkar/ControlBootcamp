@@ -1,5 +1,3 @@
-from cgi import print_arguments
-from unicodedata import name
 # from numpy.linalg import svd
 from scipy.linalg import svd
 from control import ctrb
@@ -22,4 +20,3 @@ def GetGramianCtrb(a, b):
 if __name__ == '__main__':
     GetGramianCtrb(A1, B1)
     GetGramianCtrb(A2, B2)
-    pass
