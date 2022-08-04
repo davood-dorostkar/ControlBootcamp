@@ -25,7 +25,7 @@ class CartPendulum:
         self.g = -10
         self.d = 1
         self.s = 1  # the switch. upward = 1, downward = -1
-        self.dy = [0]*4
+        self.dy = [[0]]*4
         self.y = init
         self.y_log = [0]*4
         self.u = input
@@ -60,7 +60,6 @@ class CartPendulum:
 # ===============================================
 
     def SaveState(self):
-        print(self.y)
         self.y_log.append(self.y)
 # ===============================================
 
@@ -70,21 +69,25 @@ class CartPendulum:
 
     def Visualize(self):
         tspan = np.linspace(0, 30, len(self.y_log))
-        for i in self.y_log:
-            print(list(i))
-        # print(len(self.y_log))
+        # for iter in self.y_log:
+        # print(len(iter))
+        # print(type(iter))
+        # print(iter[0])
+        # log = np.array(self.y_log)
+        print(self.y_log.shape)
+        print(tspan.shape)
         # print(len(tspan))
         # plt.figure()
-        # plt.plot(tspan, self.y_log[2])
+        # plt.plot(tspan, self.y_log)
         # plt.show()
 
 
 if __name__ == '__main__':
     stop = 30
     increment = 0.01
-    init = [0, 0, PI, 0.5]
+    initCondition = [0, 0, PI, 0.5]
     u = 0
-    cart = CartPendulum(init, u)
+    cart = CartPendulum(initCondition, u)
     cart.SaveState()
     lastTime = 0
     while lastTime < stop:
