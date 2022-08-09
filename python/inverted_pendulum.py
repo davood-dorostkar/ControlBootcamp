@@ -42,7 +42,7 @@ class CartPendulum:
 
 # ===============================================
 
-    def DynamicsIncrement(self, y, m, M, L, g, d, u):
+    def CalcLeftHandSS(self, y, m, M, L, g, d, u):
         dy = [0] * 4
         Sy = np.sin(y[2])
         Cy = np.cos(y[2])
@@ -56,22 +56,23 @@ class CartPendulum:
         return dy
 # ===============================================
 
-    def Integrate(self, y, dy, t, t_prev):
+    def CalcCurrentStates(self, y, dy, t, t_prev):
         dt = t - t_prev
         y_next = y + np.array(dy) * dt
         return y_next
 # ===============================================
 
-    def SaveState(self):
+    def SaveLog(self):
         self.y_log.append(self.y)
 # ===============================================
 
     def Solve(self, thisTime, prevTime):
-        self.dy = self.DynamicsIncrement(
+        self.dy = self.CalcLeftHandSS(
             self.y, self.m, self.M, self.L, self.g, self.d, self.u)
-        self.y = self.Integrate(self.y, self.dy, thisTime, prevTime)
+        self.y = self.CalcCurrentStates(self.y, self.dy, thisTime, prevTime)
+# ===============================================
 
-    def Visualize(self, figure):
+    def Visualize(self):
         tspan = np.linspace(0, 30, len(self.y_log))
         plt.figure()
         plt.plot(tspan,
@@ -87,11 +88,12 @@ if __name__ == '__main__':
     initCondition = [0, 0, PI, 0.5]
     u = 0
     cart = CartPendulum(initCondition, u)
-    cart.SaveState()
+    cart.SaveLog()
     lastTime = 0
     while lastTime < stop:
         thisTime = lastTime + increment
         cart.Solve(thisTime, lastTime)
-        cart.SaveState()
+        cart.SaveLog()
         lastTime = thisTime
+    SystemAnalyse(cart.A, cart.B)
     cart.Visualize()
